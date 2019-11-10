@@ -8,7 +8,7 @@ makeCacheMatrix <- function(x = matrix()) {
                 m <<- NULL
         }
         get <- function() x
-        setinv <- function(matrix) m <<- t(matrix)
+        setinv <- function(matrix) m <<- solve(matrix)
         getinv <- function() m
         list(set = set, get = get,
              setinv = setinv,
@@ -24,7 +24,7 @@ cacheSolve <- function(x, ...) {
                 return(m)
         }
         matrix <- x$get()
-        m <- t(matrix)
+        m <- solve(matrix)
         x$setinv(m)
         m
 }
